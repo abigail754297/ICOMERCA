@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merkaya | Tu tienda online de confianza</title>
+
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #fb7701;
+            --primary-dark: #e06800;
+            --primary-light: #fff0e5;
+            --red-price: #e4393c;
+            --bg-gray: #f4f5f7;
+            --card-bg: #ffffff;
+            --text-main: #222222;
+            --text-muted: #777777;
+            --border-color: #e5e5e5;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.15);
+            --radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-gray);
+            color: var(--text-main);
+        }
+
+        /* TOP BANNER */
+        .top-banner {
+            background-color: #111;
+            color: #fff;
+            font-size: 12px;
+            padding: 7px 0;
+            font-weight: 500;
+        }
+
+        .top-banner-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            padding: 0 20px;
+        }
+
+        /* HEADER */
+        .main-header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .logo-badge {
+            background: var(--primary);
+            color: white;
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        /* SEARCH BOX */
+        .search-box {
+            flex: 1;
+            max-width: 500px;
+            display: flex;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .search-box input {
+            width: 100%;
+            border: none;
+            padding: 10px 18px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+
+        .search-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* HEADER ACTIONS */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-auth-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .user-auth-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 9px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .cart-trigger {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .cart-icon-wrapper {
+            position: relative;
+            font-size: 22px;
+            color: var(--text-main);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -6px;
+            right: -10px;
+            background: var(--red-price);
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 10px;
+            padding: 1px 6px;
+        }
+
+        .cart-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* CATEGORY NAV */
+        .category-nav {
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .category-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+        }
+
+        .cat-btn {
+            background: none;
+            border: none;
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cat-btn.active, .cat-btn:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        /* HERO BANNER */
+        .hero-banner {
+            background: linear-gradient(135deg, #fb7701 0%, #ff4500 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-bottom: 25px;
+        }
+
+        .hero-badge {
+            background: rgba(255,255,255,0.25);
+            padding: 4px 14px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .hero-banner h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-top: 8px;
+        }
+
+        .hero-banner p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            max-width: 1280px;
+            margin: 0 auto 40px auto;
+            padding: 0 20px;
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .product-counter {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* PRODUCTS GRID */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 16px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .discount-tag {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: var(--red-price);
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px;
+            z-index: 2;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 3;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: #f0f0f0;
+        }
+
+        .product-info {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 13px;
+            color: var(--text-main);
+            line-height: 1.3;
+            height: 34px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            margin-bottom: 6px;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .current-price {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--red-price);
+        }
+
+        .old-price {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .free-shipping {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin-bottom: 6px;
+            width: fit-content;
+        }
+
+        .sold-count {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 9px;
+            border-radius: 18px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-add-cart:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* MODALES Y OVERLAYS */
+        .modal-overlay, .cart-drawer-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active, .cart-drawer-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-card {
+            background: white;
+            width: 100%;
+            max-width: 550px;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            outline: none;
+            font-size: 13px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+
+        /* VISTA DETALLADA DE PRODUCTO (MODAL) */
+        .product-detail-card {
+            background: white;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            position: relative;
+        }
+
+        .detail-img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .detail-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .detail-category {
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .detail-title {
+            font-size: 18px;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .detail-price-box {
+            background: var(--primary-light);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .detail-price {
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--red-price);
+        }
+
+        .detail-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        /* CARRITO LATERAL (DRAWER) */
+        .cart-drawer {
+            position: absolute;
+            right: -420px;
+            top: 0;
+            width: 420px;
+            max-width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            transition: right 0.3s ease;
+        }
+
+        .cart-drawer-overlay.active .cart-drawer {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            align-items: center;
+        }
+
+        .cart-item img {
+            width: 65px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-price {
+            color: var(--red-price);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .cart-qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .btn-qty {
+            background: var(--bg-gray);
+            border: 1px solid var(--border-color);
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-remove-item {
+            color: #888;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 4px;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            background: var(--red-price);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        /* TOASTS */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 300;
+        }
+
+        .toast {
+            background: #222;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-top: 8px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .mobile-terminal-toggle {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 58px;
+            height: 58px;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #67e8f9;
+            font-size: 22px;
+            box-shadow: 0 0 0 2px rgba(103, 232, 249, 0.2), 0 12px 28px rgba(0, 0, 0, 0.45);
+            cursor: pointer;
+            z-index: 260;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .terminal-panel {
+            position: fixed;
+            right: 20px;
+            bottom: 92px;
+            width: min(360px, calc(100vw - 28px));
+            height: min(420px, 52vh);
+            background: rgba(2, 6, 23, 0.96);
+            border: 1px solid rgba(103, 232, 249, 0.35);
+            border-radius: 16px;
+            box-shadow: 0 0 0 1px rgba(103, 232, 249, 0.1), 0 18px 40px rgba(0, 0, 0, 0.45);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(22px);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.25s ease;
+            z-index: 265;
+        }
+
+        .terminal-panel.open {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, rgba(14, 116, 144, 0.25), rgba(15, 23, 42, 0.7));
+            border-bottom: 1px solid rgba(103, 232, 249, 0.2);
+            padding: 10px 12px;
+            color: #d9f99d;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        .terminal-header .terminal-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .terminal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px currentColor;
+        }
+
+        .terminal-dot.red { background: #ff5f57; color: #ff5f57; }
+        .terminal-dot.yellow { background: #febc2e; color: #febc2e; }
+        .terminal-dot.green { background: #28c840; color: #28c840; }
+
+        .terminal-output {
+            flex: 1;
+            padding: 12px;
+            overflow-y: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #a7f3d0;
+            background: rgba(0, 0, 0, 0.4);
+            text-shadow: 0 0 8px rgba(45, 212, 191, 0.3);
+        }
+
+        .terminal-line {
+            margin-bottom: 4px;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .terminal-prompt {
+            color: #67e8f9;
+            font-weight: bold;
+        }
+
+        .terminal-input-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px 12px;
+            border-top: 1px solid rgba(103, 232, 249, 0.2);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .terminal-prompt-symbol {
+            color: #d9f99d;
+            font-weight: 700;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+
+        .terminal-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #f8fafc;
+            outline: none;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 12px;
+        }
+
+        .terminal-input::placeholder {
+            color: rgba(248, 250, 252, 0.45);
+        }
+
+        .hidden { display: none !important; }
+
+        @media (max-width: 768px) {
+            .product-detail-card { grid-template-columns: 1fr; }
+            .products-grid { grid-template-columns: repeat(2, 1fr); }
+            .top-banner-container { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRA SUPERIOR PROMOCIONAL -->
+    <div class="top-banner">
+        <div class="top-banner-container">
+            <span><i class="fa-solid fa-bolt"></i> Ofertas Relámpago hasta -90% en Merkaya</span>
+            <span><i class="fa-solid fa-truck-fast"></i> Envío Gratis a todo el país</span>
+            <span><i class="fa-solid fa-rotate-left"></i> Devolución gratuita en 90 días</span>
+        </div>
+    </div>
+
+    <!-- ENCABEZADO PRINCIPAL -->
+    <header class="main-header">
+        <div class="header-container">
+            
+            <!-- LOGO MERKAYA -->
+            <a href="#" class="logo">
+                <div class="logo-badge"><i class="fa-solid fa-bag-shopping"></i></div>
+                <span class="logo-text">MERKAYA</span>
+            </a>
+
+            <!-- BARRA DE BÚSQUEDA DINÁMICA -->
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Buscar ropa, belleza, electrónica en Merkaya...">
+                <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+
+            <!-- BOTONES DE ACCIÓN Y USUARIOS -->
+            <div class="header-actions">
+                <div class="user-auth-btn" id="authBtn">
+                    <i class="fa-solid fa-user"></i>
+                    <span id="userNameLabel">Ingresar / Registrarse</span>
+                </div>
+
+                <button class="btn-primary" id="openUploadModal">
+                    <i class="fa-solid fa-plus-circle"></i> Vender
+                </button>
+                
+                <div class="cart-trigger" id="openCartDrawer">
+                    <div class="cart-icon-wrapper">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </div>
+                    <span class="cart-label">Carrito</span>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- NAVEGACIÓN POR CATEGORÍAS -->
+    <nav class="category-nav">
+        <div class="category-container" id="categoryTabs">
+            <button class="cat-btn active" data-category="todas"><i class="fa-solid fa-fire"></i> Recomendados</button>
+            <button class="cat-btn" data-category="ropa"><i class="fa-solid fa-shirt"></i> Ropa y Moda</button>
+            <button class="cat-btn" data-category="belleza"><i class="fa-solid fa-wand-magic-sparkles"></i> Belleza y Cuidado</button>
+            <button class="cat-btn" data-category="electronica"><i class="fa-solid fa-mobile-screen-button"></i> Electrónica</button>
+            <button class="cat-btn" data-category="hogar"><i class="fa-solid fa-house"></i> Hogar</button>
+        </div>
+    </nav>
+
+    <!-- BANNER HERO -->
+    <section class="hero-banner">
+        <div class="hero-content">
+            <span class="hero-badge">¡OFERTAS EXCLUSIVAS DE MERKAYA!</span>
+            <h1>Bajan los precios, sube el ahorro</h1>
+            <p>Ropa, maquillaje, tecnología y más directos de fábrica con garantía total</p>
+        </div>
+    </section>
+
+    <!-- GRILLA PRINCIPAL DE PRODUCTOS -->
+    <main class="main-content">
+        <div class="content-header">
+            <h2><i class="fa-solid fa-bolt" style="color: var(--primary);"></i> Ofertas Destacadas</h2>
+            <span class="product-counter" id="productCounter">0 artículos encontrados</span>
+        </div>
+
+        <div class="products-grid" id="productsGrid"></div>
+    </main>
+
+    <!-- MODAL DE USUARIO / REGISTRO E INICIO DE SESIÓN -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-card" style="max-width: 400px;">
+            <div class="modal-header">
+                <h3 id="authTitle"><i class="fa-solid fa-user-plus" style="color: var(--primary);"></i> Crear Cuenta en Merkaya</h3>
+                <button class="close-btn" id="closeAuthModal">&times;</button>
+            </div>
+            
+            <form id="authForm">
+                <div class="form-group" id="nameGroup">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="regName" placeholder="Ej. Abigail Rojas">
+                </div>
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="regEmail" placeholder="correo@ejemplo.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" id="regPass" placeholder="******" required>
+                </div>
+
+                <button type="submit" class="btn-submit" id="authSubmitBtn">Crear Cuenta</button>
+
+                <p style="text-align: center; font-size: 12px; margin-top: 15px; color: var(--text-muted);">
+                    <span id="authToggleText">¿Ya tienes cuenta?</span> 
+                    <a href="#" id="toggleAuthMode" style="color: var(--primary); font-weight: bold; text-decoration: none;">Iniciar Sesión</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DE PANTALLA COMPLETA DE DETALLE DE PRODUCTO -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="product-detail-card" id="detailModalContent">
+            <!-- Se carga dinámicamente -->
+        </div>
+    </div>
+
+    <!-- MODAL PARA SUBIR PRODUCTOS -->
+    <div class="modal-overlay" id="uploadModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-store" style="color: var(--primary);"></i> Publicar Producto en Merkaya</h3>
+                <button class="close-btn" id="closeUploadModal">&times;</button>
+            </div>
+            
+            <form id="uploadForm">
+                <div class="form-group">
+                    <label>Título del Producto</label>
+                    <input type="text" id="title" placeholder="Ej. Vestido Casual o Labial Mágico" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Precio ($)</label>
+                        <input type="number" step="0.01" id="price" placeholder="Ej. 12.99" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Descuento (%)</label>
+                        <input type="number" id="discount" placeholder="Ej. 50" min="0" max="99">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Categoría</label>
+                    <select id="category" required>
+                        <option value="ropa">Ropa y Moda</option>
+                        <option value="belleza">Belleza y Cuidado</option>
+                        <option value="electronica">Electrónica</option>
+                        <option value="hogar">Hogar</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>URL de la Imagen</label>
+                    <input type="url" id="image" placeholder="https://..." required>
+                </div>
+
+                <div class="form-group">
+                    <label>Ventas Acumuladas (Opcional)</label>
+                    <input type="text" id="sold" placeholder="Ej. 15.4 mil+ vendidos">
+                </div>
+
+                <button type="submit" class="btn-submit">Publicar en la tienda</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- PANEL LATERAL DEL CARRITO -->
+    <div class="cart-drawer-overlay" id="cartDrawer">
+        <div class="cart-drawer">
+            <div class="cart-header">
+                <h3><i class="fa-solid fa-cart-shopping"></i> Mi Carrito Merkaya</h3>
+                <button class="close-btn" id="closeCartDrawer">&times;</button>
+            </div>
+
+            <div class="cart-body" id="cartItemsContainer"></div>
+
+            <div class="cart-footer">
+                <div class="total-row">
+                    <span>Total Estimado:</span>
+                    <span id="cartTotal">$0.00</span>
+                </div>
+                <button class="btn-checkout" onclick="alert('¡Procesando pago!')">Ir a Pagar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENEDOR DE NOTIFICACIONES -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <button class="mobile-terminal-toggle" id="mobileTerminalToggle" aria-label="Abrir terminal móvil">
+        <i class="fa-solid fa-terminal"></i>
+    </button>
+
+    <div class="terminal-panel" id="mobileTerminalPanel" aria-live="polite">
+        <div class="terminal-header">
+            <span>MERKAYA TERMINAL</span>
+            <div class="terminal-actions">
+                <span class="terminal-dot red"></span>
+                <span class="terminal-dot yellow"></span>
+                <span class="terminal-dot green"></span>
+            </div>
+        </div>
+        <div class="terminal-output" id="terminalOutput"></div>
+        <form class="terminal-input-row" id="terminalForm">
+            <span class="terminal-prompt-symbol">$</span>
+            <input class="terminal-input" id="terminalInput" type="text" placeholder="Escribe un comando..." autocomplete="off" />
+        </form>
+    </div>
+
+    <script>
+        // Productos por defecto
+        const defaultProducts = [
+            {
+                id: "1",
+                title: "Vestido Casual Elegante de Verano para Mujer",
+                price: 15.99,
+                discount: 40,
+                category: "ropa",
+                image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500",
+                sold: "18.4 mil+ vendidos",
+                description: "Vestido confeccionado con telas suaves y transpirables ideales para clima cálido. Diseño moderno y versátil."
+            },
+            {
+                id: "2",
+                title: "Set de Maquillaje y Paleta de Sombras Profesional",
+                price: 12.50,
+                discount: 50,
+                category: "belleza",
+                image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500",
+                sold: "25.1 mil+ vendidos",
+                description: "Paleta con 32 colores altamente pigmentados, e incluye pinceles para un acabado perfecto de larga duración."
+            },
+            {
+                id: "3",
+                title: "Reloj Inteligente Deportivo con Pulsómetro y Bluetooth",
+                price: 14.49,
+                discount: 60,
+                category: "electronica",
+                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500",
+                sold: "12.8 mil+ vendidos",
+                description: "Monitor de actividad física completa, resistente al agua y notificación de llamadas y mensajes al instante."
+            }
+        ];
+
+        let products = JSON.parse(localStorage.getItem('merkaya_products_v5')) || defaultProducts;
+        let cart = JSON.parse(localStorage.getItem('merkaya_cart_v5')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('merkaya_user')) || null;
+        let activeCategory = 'todas';
+        let isLoginMode = false;
+
+        function saveStorage() {
+            localStorage.setItem('merkaya_products_v5', JSON.stringify(products));
+            localStorage.setItem('merkaya_cart_v5', JSON.stringify(cart));
+            localStorage.setItem('merkaya_user', JSON.stringify(currentUser));
+        }
+
+        // Renderizar Productos
+        function renderGrid() {
+            const grid = document.getElementById('productsGrid');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+
+            const filtered = products.filter(p => {
+                const matchesCategory = activeCategory === 'todas' || p.category === activeCategory;
+                const matchesSearch = p.title.toLowerCase().includes(searchVal);
+                return matchesCategory && matchesSearch;
+            });
+
+            document.getElementById('productCounter').textContent = `${filtered.length} artículos encontrados`;
+            grid.innerHTML = '';
+
+            filtered.forEach(p => {
+                const originalPrice = (p.price / (1 - (p.discount || 0) / 100)).toFixed(2);
+
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.onclick = (e) => {
+                    if (!e.target.closest('.btn-add-cart') && !e.target.closest('.delete-btn')) {
+                        openDetailModal(p.id);
+                    }
+                };
+
+                card.innerHTML = `
+                    ${p.discount ? `<span class="discount-tag">-${p.discount}%</span>` : ''}
+                    <button class="delete-btn" onclick="deleteProduct('${p.id}')">&times;</button>
+                    <img src="${p.image}" alt="${p.title}" class="product-img" onerror="this.src='https://via.placeholder.com/300?text=Merkaya'">
+                    <div class="product-info">
+                        <div>
+                            <p class="product-title">${p.title}</p>
+                            <div class="price-row">
+                                <span class="current-price">$${p.price.toFixed(2)}</span>
+                                ${p.discount ? `<span class="old-price">$${originalPrice}</span>` : ''}
+                            </div>
+                            <span class="free-shipping"><i class="fa-solid fa-truck-fast"></i> Envío gratis</span>
+                        </div>
+                        <div>
+                            <div class="sold-count">${p.sold}</div>
+                            <button class="btn-add-cart" onclick="addToCart('${p.id}')">
+                                <i class="fa-solid fa-cart-plus"></i> Añadir al carrito
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // MOSTRAR DETALLE DEL PRODUCTO (PANTALLA DE PRODUCTO)
+        function openDetailModal(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+
+            const originalPrice = (product.price / (1 - (product.discount || 0) / 100)).toFixed(2);
+            const content = document.getElementById('detailModalContent');
+
+            content.innerHTML = `
+                <button class="close-btn" onclick="toggleModal('detailModal', false)" style="position: absolute; top: 15px; right: 15px;">&times;</button>
+                <img src="${product.image}" alt="${product.title}" class="detail-img">
+                <div class="detail-info">
+                    <div>
+                        <span class="detail-category">${product.category}</span>
+                        <h2 class="detail-title">${product.title}</h2>
+                        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">${product.description || 'Producto garantizado de alta calidad en Merkaya.'}</p>
+                        
+                        <div class="detail-price-box">
+                            <span style="font-size: 12px; color: var(--text-muted);">Precio de Oferta:</span>
+                            <div class="detail-price">$${product.price.toFixed(2)}</div>
+                            ${product.discount ? `<span style="text-decoration: line-through; font-size: 13px; color: #888;">Antes: $${originalPrice} (-${product.discount}%)</span>` : ''}
+                        </div>
+
+                        <span class="free-shipping"><i class="fa-solid fa-truck-fast"></i> Envío Gratis a todo el país</span>
+                        <div class="sold-count" style="margin-top: 6px;">🔥 ${product.sold}</div>
+                    </div>
+
+                    <div class="detail-actions">
+                        <button class="btn-submit" onclick="addToCart('${product.id}'); toggleModal('detailModal', false);">
+                            <i class="fa-solid fa-cart-plus"></i> Añadir al Carrito
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            toggleModal('detailModal', true);
+        }
+
+        // SISTEMA DE AUTENTICACIÓN / USUARIOS
+        function updateAuthUI() {
+            const label = document.getElementById('userNameLabel');
+            if (currentUser) {
+                label.textContent = `¡Hola, ${currentUser.name}!`;
+            } else {
+                label.textContent = 'Ingresar / Registrarse';
+            }
+        }
+
+        document.getElementById('authBtn').onclick = () => {
+            if (currentUser) {
+                if (confirm(`¿Deseas cerrar sesión, ${currentUser.name}?`)) {
+                    currentUser = null;
+                    saveStorage();
+                    updateAuthUI();
+                    showToast('Sesión cerrada');
+                }
+            } else {
+                toggleModal('authModal', true);
+            }
+        };
+
+        document.getElementById('toggleAuthMode').onclick = (e) => {
+            e.preventDefault();
+            isLoginMode = !isLoginMode;
+            document.getElementById('authTitle').innerHTML = isLoginMode ? '<i class="fa-solid fa-right-to-bracket" style="color: var(--primary);"></i> Iniciar Sesión' : '<i class="fa-solid fa-user-plus" style="color: var(--primary);"></i> Crear Cuenta';
+            document.getElementById('nameGroup').classList.toggle('hidden', isLoginMode);
+            document.getElementById('authSubmitBtn').textContent = isLoginMode ? 'Entrar' : 'Crear Cuenta';
+            document.getElementById('authToggleText').textContent = isLoginMode ? '¿No tienes cuenta?' : '¿Ya tienes cuenta?';
+            document.getElementById('toggleAuthMode').textContent = isLoginMode ? 'Registrarse' : 'Iniciar Sesión';
+        };
+
+        document.getElementById('authForm').onsubmit = (e) => {
+            e.preventDefault();
+            const email = document.getElementById('regEmail').value;
+            const name = document.getElementById('regName').value || email.split('@')[0];
+
+            currentUser = { name, email };
+            saveStorage();
+            updateAuthUI();
+            toggleModal('authModal', false);
+            showToast(`Bienvenido a Merkaya, ${name}`);
+        };
+
+        // SUBIR PRODUCTO
+        document.getElementById('uploadForm').onsubmit = (e) => {
+            e.preventDefault();
+            const newProduct = {
+                id: Date.now().toString(),
+                title: document.getElementById('title').value,
+                price: parseFloat(document.getElementById('price').value),
+                discount: parseInt(document.getElementById('discount').value) || 0,
+                category: document.getElementById('category').value,
+                image: document.getElementById('image').value,
+                sold: document.getElementById('sold').value || '10+ vendidos'
+            };
+
+            products.unshift(newProduct);
+            saveStorage();
+            renderGrid();
+            toggleModal('uploadModal', false);
+            showToast('¡Producto publicado!');
+        };
+
+        function deleteProduct(id) {
+            if (confirm('¿Eliminar este producto?')) {
+                products = products.filter(p => p.id !== id);
+                saveStorage();
+                renderGrid();
+                showToast('Producto eliminado');
+            }
+        }
+
+        // CARRITO
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const item = cart.find(c => c.id === id);
+
+            if (item) item.qty += 1;
+            else cart.push({ ...product, qty: 1 });
+
+            saveStorage();
+            updateCartUI();
+            showToast('Añadido al carrito');
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cartBadge');
+            const container = document.getElementById('cartItemsContainer');
+            const totalEl = document.getElementById('cartTotal');
+
+            badge.textContent = cart.reduce((acc, i) => acc + i.qty, 0);
+            container.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(i => {
+                total += i.price * i.qty;
+                const el = document.createElement('div');
+                el.className = 'cart-item';
+                el.innerHTML = `
+                    <img src="${i.image}">
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${i.title}</div>
+                        <div class="cart-item-price">$${i.price.toFixed(2)} x ${i.qty}</div>
+                    </div>
+                `;
+                container.appendChild(el);
+            });
+
+            totalEl.textContent = `$${total.toFixed(2)}`;
+        }
+
+        function showToast(msg) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = msg;
+            document.getElementById('toastContainer').appendChild(toast);
+            setTimeout(() => toast.remove(), 2500);
+        }
+
+        function toggleModal(id, show) {
+            document.getElementById(id).classList.toggle('active', show);
+        }
+
+        document.getElementById('openUploadModal').onclick = () => toggleModal('uploadModal', true);
+        document.getElementById('closeUploadModal').onclick = () => toggleModal('uploadModal', false);
+        document.getElementById('openCartDrawer').onclick = () => toggleModal('cartDrawer', true);
+        document.getElementById('closeCartDrawer').onclick = () => toggleModal('cartDrawer', false);
+        document.getElementById('closeAuthModal').onclick = () => toggleModal('authModal', false);
+
+        document.getElementById('categoryTabs').onclick = (e) => {
+            const target = e.target.closest('.cat-btn');
+            if (target) {
+                document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+                target.classList.add('active');
+                activeCategory = target.dataset.category;
+                renderGrid();
+            }
+        };
+
+        // TERMINAL MÓVIL
+        const terminalOutput = document.getElementById('terminalOutput');
+        const terminalInput = document.getElementById('terminalInput');
+        const terminalPanel = document.getElementById('mobileTerminalPanel');
+        const terminalToggle = document.getElementById('mobileTerminalToggle');
+
+        function appendTerminalLine(text, isUserCommand = false) {
+            const line = document.createElement('div');
+            line.className = 'terminal-line';
+            if (isUserCommand) {
+                line.innerHTML = `<span class="terminal-prompt">$</span> ${text}`;
+            } else {
+                line.textContent = text;
+            }
+            terminalOutput.appendChild(line);
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        }
+
+        function terminalCommandHelp() {
+            return [
+                'Comandos disponibles:',
+                '  help           Muestra esta ayuda',
+                '  ls             Lista productos y categorías',
+                '  cart           Muestra el estado del carrito',
+                '  user           Muestra el usuario actual',
+                '  products       Cuenta productos disponibles',
+                '  open cart      Abre el carrito',
+                '  open login     Abre la sesión',
+                '  clear          Limpia la terminal',
+                '  date           Muestra la fecha actual',
+                '  echo texto     Repite el texto escrito'
+            ];
+        }
+
+        function getTotalCartItems() {
+            return cart.reduce((sum, item) => sum + item.qty, 0);
+        }
+
+        function getCartTotal() {
+            return cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        }
+
+        function setTerminalOpen(open) {
+            terminalPanel.classList.toggle('open', open);
+            if (open) {
+                setTimeout(() => terminalInput.focus(), 50);
+            }
+        }
+
+        function executeTerminalCommand(rawCommand) {
+            const command = rawCommand.trim();
+            if (!command) return;
+
+            appendTerminalLine(command, true);
+
+            const lower = command.toLowerCase();
+            const args = command.split(' ');
+
+            if (lower === 'help') {
+                terminalCommandHelp().forEach(line => appendTerminalLine(line));
+                return;
+            }
+
+            if (lower === 'clear') {
+                terminalOutput.innerHTML = '';
+                return;
+            }
+
+            if (lower === 'ls' || lower === 'list') {
+                const categories = [...new Set(products.map(p => p.category))];
+                appendTerminalLine(`Productos: ${products.length}`);
+                appendTerminalLine(`Categorías: ${categories.join(', ')}`);
+                products.slice(0, 5).forEach(product => appendTerminalLine(`- ${product.title} ($${product.price.toFixed(2)})`));
+                return;
+            }
+
+            if (lower === 'products') {
+                appendTerminalLine(`Hay ${products.length} productos disponibles en Merkaya.`);
+                return;
+            }
+
+            if (lower === 'cart') {
+                appendTerminalLine(`Artículos: ${getTotalCartItems()}`);
+                appendTerminalLine(`Total: $${getCartTotal().toFixed(2)}`);
+                return;
+            }
+
+            if (lower === 'user') {
+                appendTerminalLine(currentUser ? `Usuario activo: ${currentUser.name} (${currentUser.email})` : 'No hay usuario activo.');
+                return;
+            }
+
+            if (lower === 'date') {
+                appendTerminalLine(new Date().toLocaleString());
+                return;
+            }
+
+            if (lower.startsWith('echo ')) {
+                appendTerminalLine(command.slice(5));
+                return;
+            }
+
+            if (lower === 'open cart') {
+                toggleModal('cartDrawer', true);
+                appendTerminalLine('Abriendo carrito de compras...');
+                return;
+            }
+
+            if (lower === 'open login' || lower === 'open auth') {
+                toggleModal('authModal', true);
+                appendTerminalLine('Abriendo autenticación...');
+                return;
+            }
+
+            appendTerminalLine('Comando no reconocido. Escribe help para ver la lista.');
+        }
+
+        document.getElementById('terminalForm').onsubmit = (event) => {
+            event.preventDefault();
+            const raw = terminalInput.value;
+            executeTerminalCommand(raw);
+            terminalInput.value = '';
+        };
+
+        terminalToggle.addEventListener('click', () => {
+            setTerminalOpen(!terminalPanel.classList.contains('open'));
+        });
+
+        if (window.innerWidth <= 768) {
+            setTimeout(() => setTerminalOpen(true), 600);
+        }
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                setTerminalOpen(false);
+            }
+        });
+
+        appendTerminalLine('Merkaya Terminal v1.0');
+        appendTerminalLine('Escribe help para ver los comandos disponibles.');
+
+        if (window.innerWidth <= 768) {
+            setTimeout(() => setTerminalOpen(true), 600);
+        }
+
+        renderGrid();
+        updateCartUI();
+        updateAuthUI();
+    </script>
+</body>
+</html>
